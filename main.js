@@ -7,8 +7,6 @@ var routes = require('./routes/testRoutes');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://test:12345678A@ds018308.mlab.com:18308/test_db', { useNewUrlParser: true });
 routes(app);
 
 app.use(function(req, res) {
@@ -18,6 +16,9 @@ app.use(function(req, res) {
 app.get('/', function(req, res){
    res.send("Hello world!");
 });
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://test:12345678A@ds018308.mlab.com:18308/test_db', { useNewUrlParser: true });
 
 var server = app.listen(3001, function (){
 
